@@ -1,0 +1,141 @@
+﻿<Window x:Class="ChannelCodesCoder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Канальные коды" Height="600" Width="800"
+        MinWidth="800" MinHeight="600"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Канальные коды" FontSize="30" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style x:Key="TitleStyle" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="DockPanel.Dock" Value="Top"/>
+                </Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+            </Grid.Resources>
+            
+            <DockPanel Grid.Row="0" LastChildFill="True">
+                <TextBlock Text="{Binding InputCheck}" Foreground="{Binding CheckColor}" DockPanel.Dock="Right" Margin="5"/>
+                <TextBlock Text="Информация для кодирования:" Margin="5" />
+                <TextBox Margin="5" Height="20" VerticalAlignment="Top" Text="{Binding InputString,UpdateSourceTrigger=PropertyChanged}"/>
+
+            </DockPanel>
+            
+                <DockPanel Grid.Row="1">
+                    <TextBlock Style="{StaticResource TitleStyle}" 
+                               Text="Представление в виде импульсов положительной и отрецательной полярности"/>
+                <Border>
+                    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <Grid x:Name="ImpulseGrid" DockPanel.Dock="Top" Margin="5">
+                            <ContentPresenter Content="{Binding ImpulseContext}"/>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+
+
+                <ScrollViewer Grid.Row="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <TextBlock Style="{StaticResource TitleStyle}"  
+                                       Text="Дуобинарный код"/>
+                        <Border>
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding DuoContext}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </DockPanel>
+
+                        <DockPanel Grid.Row="1">
+                            <TextBlock Style="{StaticResource TitleStyle}" 
+                                       Text="Квазитроичный код"/>
+                            <Border>
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding CvaziContext}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                        </DockPanel>
+
+                        <DockPanel Grid.Row="2">
+                            <TextBlock Style="{StaticResource TitleStyle}"  
+                                       Text="Код Манчестер 2"/>
+                        <Border>
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding ManchesterContext}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </DockPanel>
+
+                        <DockPanel Grid.Row="3">
+                            <DockPanel.Resources>
+                                <Style TargetType="TextBlock" x:Key="SubtitleStyle">
+                                    <Setter Property="Margin" Value="10,5"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                    <Setter Property="DockPanel.Dock" Value="Top"/>
+                                </Style>
+                            </DockPanel.Resources>
+                            <TextBlock Style="{StaticResource TitleStyle}"  
+                                       Text="Код 4B3T"/>
+                            <TextBlock Style="{StaticResource SubtitleStyle}"
+                                Text="1)	код R1 (для каналов, в которых преобладают искажения отрицательных импульсов)"/>
+                        <Border DockPanel.Dock="Top" Height="120">
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding R1Context}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                        <TextBlock Style="{StaticResource SubtitleStyle}"
+                                Text="2)	код R2 (для каналов, в которых одинаково искажаются отрицательные и положительные импульсы);"/>
+                        <Border DockPanel.Dock="Top" Height="120">
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding R2Context}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                        <TextBlock Style="{StaticResource SubtitleStyle}"
+                                Text="3)	код R3 (для каналов, в которых преобладают искажения положительных импульсов);"/>
+                        <Border DockPanel.Dock="Top" Height="120">
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <Grid DockPanel.Dock="Top" Margin="5">
+                                    <ContentPresenter Content="{Binding R3Context}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </DockPanel>
+                    
+                    </Grid>
+                </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
